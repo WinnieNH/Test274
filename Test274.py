@@ -5,9 +5,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-z = np.linspace(0, 20, 100)  # Create a list of evenly-spaced numbers over the range
-plt.plot(z, np.sin(z))       # Plot the sine of each x point
-plt.show()                   # Display the plot
+
 
 url = "https://pokeapi.co/api/v2/pokemon/"
 response = requests.get(url)
@@ -46,7 +44,13 @@ for item in dataCol["results"]:
         y2 = 0
 
         slect2 = dataCol2["results"][y2]"""
-        print(dataCol2)
+        print('good result: ' + dataCol2["name"])
+
+        z = np.array([0, dataCol2["weight"], 100])  # Create a list of evenly-spaced numbers over the range
+                  # Display the plot
+        plt.plot(z, marker = 'o')       # Plot the sine of each x point
+        plt.show() 
+
         
     
     y += 1
