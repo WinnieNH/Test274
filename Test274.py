@@ -7,8 +7,8 @@ import pandas as pd
 
 
 
-url = "https://pokeapi.co/api/v2/pokemon/"
-response = requests.get(url)
+urlpoke = "https://pokeapi.co/api/v2/pokemon?limit=721&offset=0"
+response = requests.get(urlpoke)
 jsonp = response.json()
 
 dataCol = json.loads(response.text)
@@ -20,10 +20,11 @@ df.to_csv('PokeOutput.csv', encoding='utf-8', index=False)
 collectivebase = []  # Create a list of evenly-spaced numbers over the range
                   # Display the plot
 
-
-x = input('search now: ')
+x = input('all or search now: ')
 x = x.casefold()
 y = 0
+
+
 
 for item in dataCol["results"]:
     slect = dataCol["results"][y]
@@ -32,7 +33,7 @@ for item in dataCol["results"]:
     #print(slect)
     if(x == "all"):
         
-        print(name)
+        
 
         url2 = "https://pokeapi.co/api/v2/pokemon/" + name
         print(url2)
@@ -41,6 +42,11 @@ for item in dataCol["results"]:
         jsonp2 = response2.json()
 
         dataCol2 = json.loads(response2.text)
+
+        print(name) 
+        for types in range(len(dataCol2["types"])):
+
+            print(" type: " + dataCol2["types"][types]["type"]["name"])
 
         collectivebase.append(dataCol2["base_experience"])
         
@@ -61,7 +67,11 @@ for item in dataCol["results"]:
         y2 = 0
 
         slect2 = dataCol2["results"][y2]"""
-        print('good result: ' + dataCol2["name"] + " type1: " + dataCol2["types"][0]["type"]["name"] + " type2: " + dataCol2["types"][1]["type"]["name"])
+
+        print('good result: ' + dataCol2["name"])
+        for types in range(len(dataCol2["types"])):
+
+            print(" type: " + dataCol2["types"][types]["type"]["name"])
 
         z = np.array([0, dataCol2["weight"], 100])  # Create a list of evenly-spaced numbers over the range
                   # Display the plot

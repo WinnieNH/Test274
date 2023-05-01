@@ -12,9 +12,11 @@ z = np.linspace(0, 2)  # Create a list of evenly-spaced numbers over the range
 HPcalc = []
 
 #print(pokebestand.columns)
-start = input('search, stats, random or (random) fight? ')
+start = input('AC or Pokemon: search, stats, random or (random) fight? ')
 
-if(start == "search"):
+if(start == "AC"):
+    print(ACbestand["Name"])
+elif(start == "search"):
     search = input('Show all or search name of Pokemon/Move or legendary: ')
 
     for index, pokemon in pokebestand.iterrows():
@@ -79,7 +81,7 @@ elif(start == 'fight'):
             p2 = pokemon["HP"]
             print(pokemon["Name"], p2)"""
                   
-print(ACbestand["Name"])
+
         
 
         
