@@ -17,24 +17,24 @@ df = pd.DataFrame(jsonp)
 
 df.to_csv('PokeOutput.csv', encoding='utf-8', index=False)
 
-collectivebase = []  # Create a list of evenly-spaced numbers over the range
-                  # Display the plot
+collectivebase = [] 
+
+minweight = 1
+maxweight = 9500
 
 x = input('all or search now: ')
 x = x.casefold()
 y = 0
 
 
-
 for item in dataCol["results"]:
     slect = dataCol["results"][y]
     name = slect["name"]
-    
-    #print(slect)
-    if(x == "all"):
-        
-        
 
+    
+    
+    if(x == "all"):
+ 
         url2 = "https://pokeapi.co/api/v2/pokemon/" + name
         print(url2)
 
@@ -48,7 +48,7 @@ for item in dataCol["results"]:
 
             print(" type: " + dataCol2["types"][types]["type"]["name"])
 
-        collectivebase.append(dataCol2["base_experience"])
+        collectivebase.append(dataCol2["base_experience"]) #eerste berekening, wel af
         
 
     elif( x in name):
@@ -60,27 +60,21 @@ for item in dataCol["results"]:
         jsonp2 = response2.json()
 
         dataCol2 = json.loads(response2.text)
-        #print(dataCol2["stats"][0]["base_stat"])
         
-        """x2 = input('search now: ')
-        x2 = x2.casefold()
-        y2 = 0
-
-        slect2 = dataCol2["results"][y2]"""
-
         print('good result: ' + dataCol2["name"])
         for types in range(len(dataCol2["types"])):
 
             print(" type: " + dataCol2["types"][types]["type"]["name"])
 
-        z = np.array([0, dataCol2["weight"], 100])  # Create a list of evenly-spaced numbers over the range
-                  # Display the plot
-        plt.plot(z, marker = 'o')       # Plot the sine of each x point
+        
+        z = np.array([minweight, dataCol2["weight"], maxweight])  #min en max weight opgezocht want dit was niet op te halen
+        omega = ["Ghastly", dataCol2["name"], "Groudon"]
+        plt.bar(omega, z)       
         
     y += 1
 
 np.array(collectivebase)
-plt.hist(collectivebase)       # Plot the sine of each x point
+plt.hist(collectivebase)  
 plt.show()
 
         
