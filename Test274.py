@@ -43,7 +43,7 @@ for item in dataCol["results"]:
 
         dataCol2 = json.loads(response2.text)
 
-        print(name) 
+        print(name + " base experience: ", dataCol2["base_experience"]) 
         for types in range(len(dataCol2["types"])):
 
             print(" type: " + dataCol2["types"][types]["type"]["name"])
@@ -61,7 +61,7 @@ for item in dataCol["results"]:
 
         dataCol2 = json.loads(response2.text)
         
-        print('good result: ' + dataCol2["name"])
+        print('good result: ' + dataCol2["name"] + " weight: ", dataCol2["weight"])
         for types in range(len(dataCol2["types"])):
 
             print(" type: " + dataCol2["types"][types]["type"]["name"])

@@ -41,7 +41,7 @@ elif (start == 'stats'):
     totalHP = 0
     for index, pokemon in pokebestand.iterrows():
         totalHP = totalHP + pokemon["HP"] #eerste berekening, wel af
-        print(totalHP)
+        print("totalHP: ", totalHP)
 
         HPcalc.append(pokemon["HP"])
         plt.hist(HPcalc)
@@ -53,7 +53,7 @@ elif(start == 'random'):
     
     for index, pokemon in pokebestand.iterrows():
         if (num == pokemon["#"]):
-            print(pokemon["Name"], pokemon["Type 1"], pokemon["Type 2"])
+            print(pokemon["Name"])
 
 elif(start == "fight"): #TWEEDE BEREKENING DIE NOG AF MOET!
     from random import *
