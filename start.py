@@ -55,27 +55,30 @@ elif(start == 'random'):
         if (num == pokemon["#"]):
             print(pokemon["Name"], pokemon["Type 1"], pokemon["Type 2"])
 
-elif(start == 'fight'):
+elif(start == "fight"): #TWEEDE BEREKENING DIE NOG AF MOET!
     from random import *
     num = randint(1, 802)
     num2 = randint(1, 802)
 
-    pok1 =  pokebestand[pokebestand["#"] == num]
-    pok2 =  pokebestand[pokebestand["#"] == num2]
+    for index, pokemon in pokebestand.iterrows():
+        if(num == pokemon["#"]):
+            pok1stats = pokemon["Total"]
+            pok1name = pokemon["Name"]
+    for index, pokemon in pokebestand.iterrows():
+        if (num2 == pokemon["#"]):
+            pok2stats = pokemon["Total"]
+            pok2name = pokemon["Name"]
+               
 
-    pok1stats = pok1["Total"]
-    pok2stats = pok2["Total"]
 
-    #if pok1(pok1): TWEEDE BEREKENING DIE NOG AF MOET!
-    print(pok1stats, pok2stats)
-    
-    """for index, pokemon in pokebestand.iterrows():    
-        if (num == pokemon["#"]):
-            p = pokemon["HP"]
-            print(pokemon["Name"], p)
-        if (num2 == pokemon["#"]): 
-            p2 = pokemon["HP"]
-            print(pokemon["Name"], p2)"""
+    print(pok1name, pok1stats)
+    print(pok2name, pok2stats)
+    if(pok1stats > pok2stats):
+        print(pok1name + " wins")
+    elif(pok1stats < pok2stats):
+        print(pok2name + " wins")
+    else:
+        print("draw")     
                   
 
         
