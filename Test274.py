@@ -1,10 +1,8 @@
 import requests
 import json
-
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-
 
 
 urlpoke = "https://pokeapi.co/api/v2/pokemon?limit=721&offset=0"
@@ -15,24 +13,24 @@ dataCol = json.loads(response.text)
 
 df = pd.DataFrame(jsonp)
 
-df.to_csv('PokeOutput.csv', encoding='utf-8', index=False)
+df.to_csv("PokeOutput.csv", encoding="utf-8", index=False)
+
 
 collectivebase = [] 
 
 minweight = 1
 maxweight = 9500
 
-x = input('all or search now: ')
+x = input("all or search now: ")
 x = x.casefold()
 y = 0
 
 
 for item in dataCol["results"]:
+    
     slect = dataCol["results"][y]
     name = slect["name"]
 
-    
-    
     if(x == "all"):
  
         url2 = "https://pokeapi.co/api/v2/pokemon/" + name
@@ -44,14 +42,16 @@ for item in dataCol["results"]:
         dataCol2 = json.loads(response2.text)
 
         print(name + " base experience: ", dataCol2["base_experience"]) 
+        
         for types in range(len(dataCol2["types"])):
 
             print(" type: " + dataCol2["types"][types]["type"]["name"])
 
-        collectivebase.append(dataCol2["base_experience"]) #eerste berekening, wel af
+        collectivebase.append(dataCol2["base_experience"]) 
         
 
-    elif( x in name):
+    elif(x in name):
+       
         print(slect)
         url2 = "https://pokeapi.co/api/v2/pokemon/" + x
         print(url2)
@@ -61,7 +61,8 @@ for item in dataCol["results"]:
 
         dataCol2 = json.loads(response2.text)
         
-        print('good result: ' + dataCol2["name"] + " weight: ", dataCol2["weight"])
+        print("good result: " + dataCol2["name"] + " weight: ", dataCol2["weight"])
+        
         for types in range(len(dataCol2["types"])):
 
             print(" type: " + dataCol2["types"][types]["type"]["name"])
@@ -69,6 +70,7 @@ for item in dataCol["results"]:
         
         z = np.array([minweight, dataCol2["weight"], maxweight])  #min en max weight opgezocht want dit was niet op te halen
         omega = ["Ghastly", dataCol2["name"], "Groudon"]
+        
         plt.bar(omega, z)       
         
     y += 1
