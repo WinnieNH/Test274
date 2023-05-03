@@ -9,7 +9,7 @@ urlpoke = "https://pokeapi.co/api/v2/pokemon?limit=721&offset=0"
 response = requests.get(urlpoke)
 jsonp = response.json()
 
-dataCol = json.loads(response.text)
+datacol = json.loads(response.text)
 
 df = pd.DataFrame(jsonp)
 
@@ -26,9 +26,9 @@ x = x.casefold()
 y = 0
 
 
-for item in dataCol["results"]:
+for item in datacol["results"]:
     
-    slect = dataCol["results"][y]
+    slect = datacol["results"][y]
     name = slect["name"]
 
     if(x == "all"):
@@ -39,15 +39,15 @@ for item in dataCol["results"]:
         response2 = requests.get(url2)
         jsonp2 = response2.json()
 
-        dataCol2 = json.loads(response2.text)
+        datacol2 = json.loads(response2.text)
 
-        print(name + " base experience: ", dataCol2["base_experience"]) 
+        print(name + " base experience: ", datacol2["base_experience"]) 
         
-        for types in range(len(dataCol2["types"])):
+        for types in range(len(datacol2["types"])):
 
-            print(" type: " + dataCol2["types"][types]["type"]["name"])
+            print(" type: " + datacol2["types"][types]["type"]["name"])
 
-        collectivebase.append(dataCol2["base_experience"]) 
+        collectivebase.append(datacol2["base_experience"]) 
         
 
     elif(x in name):
@@ -59,17 +59,17 @@ for item in dataCol["results"]:
         response2 = requests.get(url2)
         jsonp2 = response2.json()
 
-        dataCol2 = json.loads(response2.text)
+        datacol2 = json.loads(response2.text)
         
-        print("good result: " + dataCol2["name"] + " weight: ", dataCol2["weight"])
+        print("good result: " + datacol2["name"] + " weight: ", datacol2["weight"])
         
-        for types in range(len(dataCol2["types"])):
+        for types in range(len(datacol2["types"])):
 
-            print(" type: " + dataCol2["types"][types]["type"]["name"])
+            print(" type: " + datacol2["types"][types]["type"]["name"])
 
         
-        z = np.array([minweight, dataCol2["weight"], maxweight])  #min en max weight opgezocht want dit was niet op te halen
-        omega = ["Ghastly", dataCol2["name"], "Groudon"]
+        z = np.array([minweight, datacol2["weight"], maxweight])  #min en max weight opgezocht want dit was niet op te halen
+        omega = ["Ghastly", datacol2["name"], "Groudon"]
         
         plt.bar(omega, z)       
         
