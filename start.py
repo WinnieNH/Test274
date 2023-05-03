@@ -11,7 +11,7 @@ HPcalc = [] #array voor berekenen HP maplotlib functie
 start = input("AC or Pokemon: search, stats, random or (random) fight? ")
 
 
-if(start == "AC"): #eerste zoektfunctie, zoekt door middel van de input value door het csv bestand
+if(start == "AC"): #eerste zoektfunctie, zoekt door middel van de input value door het hele csv bestand
     print("What info? ")
     interest = input()
     print(ACbestand[interest])
