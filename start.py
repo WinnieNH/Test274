@@ -68,7 +68,7 @@ elif(start == "fight"):
                
 
 
-    print(pok1name, pok1stats)
+    print(pok1name, pok1stats) #geet af en toe error. Waarschijnlijk omdat sommige pokemon meerdere versies hebben
     print(pok2name, pok2stats)
     
     if(pok1stats > pok2stats):
